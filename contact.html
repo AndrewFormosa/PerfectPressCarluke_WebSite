@@ -33,7 +33,28 @@
     Or email us at mahamrah@yahoo.co.uk.
   <br>
  
+  <form id="contact_form" class="w-30 bg-secondary m-4 p-4" method="post" action="contact_us.php">
+      <div class="form-group">
+        <label for="Name">Your Name</label>
+        <input name="customer_name" type="text" class="form-control" id="Name" placeholder="Enter your name">
+       
+      </div>
+      <div class="form-group">
+        <label for="PreferedContactMethod">Your email or telephone number:</label>
+        <input name="customer_contact" type="text" class="form-control" id="PreferedContactMethod" placeholder="Enter your email or phone number">
+        <small>Whichever is your prefered method for us to contact you.</small>
+      </div>
+      <div class="form-group">
+        <label for="YourEnquiry">Your enquiry:</label>
+        <textarea name="customer_enquiry" row="10" columns="10"  class="form-control" id="YourEnquiry" placeholder="Enter your enquiry here."></textarea>
+      </div>
 
+      <!-- <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div> -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
 
 
@@ -43,6 +64,11 @@
 </div>
 
 <!--Contact Us Form-->
+
+
+
+
+
 
 <image class="slide-image" src="images/contact_image.jpeg"></image>
 
