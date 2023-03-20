@@ -23,6 +23,6 @@ echo "sent successful";
 } else {
 echo "There has been an error sending your comments. Please try later.";
 }
-header("Location:http://www.afomos.co.uk/test_docs/test_web/perfectpresscarluke/thankyou.html");
+header("Location:http://www.perfectpresscarluke.co.uk/thankyou.html");
 exit();
 ?>
