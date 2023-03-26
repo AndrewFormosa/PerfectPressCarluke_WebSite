@@ -209,7 +209,8 @@ background: rgb(255, 255, 255);
 
 .my-card{
   transition: 1s ease;
-  background: rgb(245, 245, 245);
+  color:white;
+  background: var(--dark-blue);
   border-radius: 10px;
   text-decoration: none;
   }
@@ -219,22 +220,25 @@ aspect-ratio: 2;
 border-radius: 10px;
 }
 
+.card-text{
+  color:white;
+}
 
 .card{
-
   text-decoration: none;
   max-width: 300px;
   min-width:200px
 }
 
+
 a:hover, a:visited, a:link, a:active{
   transition: 1s ease;
   text-decoration: none;
-  color:rgb(34, 34, 34);
+  color:rgb(255, 255, 255);
 }
 
 .card:hover{
-background:var(--dark-blue);
+background:var(--dark-grey);
 color:white;
 }
 
