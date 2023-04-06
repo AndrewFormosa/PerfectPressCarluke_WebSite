@@ -28,8 +28,37 @@
 <div class="side-text">
   <h4>Contact Us</h4>
   <p>
-    Contact us at any time on 01555 770992,<br>
-    Or email us at info@perfectpresscarluke.co.uk.
+    
+      Contact us at any time on 01555 770992,<br>
+      Or email us at info@perfectpressparluke.co.uk<br><br>
+      Or, if you would prefer for us to contact you then<br>
+      please fill in the form below with your prefered<br>
+      contact method and press <b>Send Message</b><br>
+   
+    <form id="contact_form" class="align-self-center w-100 bg-secondary m-4 p-4" method="post" action="php/contactMe.php">
+      <div class="form-group">
+        <label for="Name">Your Name</label>
+        <input name="customer_name" type="text" class="form-control" id="Name" placeholder="Enter your name here..">
+       
+      </div>
+     
+      <div class="form-group">
+        <label for="Email">Your email:</label>
+        <input name="customer_email" type="email" class="form-control" id="Email" placeholder="Enter your email here..">
+      </div>
+  
+      <div class="form-group">
+        <label for="Telephone">Your telephone number:</label>
+        <input name="customer_telephone" type="email" class="form-control" id="Telephone" placeholder="Enter your telepone number here..">
+      </div>
+  
+      <div class="form-group">
+        <label for="YourMessage">Your message:</label>
+        <textarea name ="message" type ="text" class="form-control" id="YourMessage" rows="3"  placeholder="Enter your message here.."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+
   <br>
  
 <!--INFOMATION-->
