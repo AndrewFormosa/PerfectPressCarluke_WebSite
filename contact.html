@@ -35,7 +35,7 @@
       please fill in the form below with your prefered<br>
       contact method and press <b>Send Message</b><br>
    
-    <form id="contact_form" class="align-self-center w-100 bg-secondary m-4 p-4" method="post" action="php/contactMe.php">
+    <form id="contact_form" class="align-self-center w-100 bg-secondary m-4 p-4" method="post" action="php/sendContactForm.php">
       <div class="form-group">
         <label for="Name">Your Name</label>
         <input name="customer_name" type="text" class="form-control" id="Name" placeholder="Enter your name here..">
@@ -54,7 +54,7 @@
   
       <div class="form-group">
         <label for="YourMessage">Your message:</label>
-        <textarea name ="message" type ="text" class="form-control" id="YourMessage" rows="3"  placeholder="Enter your message here.."></textarea>
+        <textarea name ="customer_message" type ="text" class="form-control" id="YourMessage" rows="3"  placeholder="Enter your message here.."></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Send Message</button>
     </form>
