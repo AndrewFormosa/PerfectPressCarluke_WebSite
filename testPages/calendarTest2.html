@@ -19,8 +19,14 @@
         .calendar {
             max-width: 400px;
         }
+        #currentMonth{
+           display: inline-block;
+            width: 100px;
+           
+        }
 
         .btn {
+        
             width: 100px;
         }
 
@@ -44,7 +50,7 @@
             <h2 class="text-center">Calendar</h2>
             <div class="text-center">
                 <button class="btn btn-secondary" onclick="previousMonth()">Previous</button>
-                <span id="currentMonth">January</span>
+                <span id="currentMonth"></span>
                 <button class="btn btn-secondary" onclick="nextMonth()">Next</button>
             </div>
             <br>
@@ -80,6 +86,8 @@
 
     const dayInMS = 24*60*60*1000; //1 day in ms
     const today = new Date(); //current date
+    var viewedMonth=today.getMonth();
+    var viewedYear=today.getFullYear();
 
     var selectedDate = null;
     var readyDate=null;
@@ -94,10 +102,17 @@
 
     function renderCalendar(){
     var calendarBody = document.getElementById("calendar").getElementsByTagName("tbody")[0];
+    var monthLabel = document.getElementById("currentMonth");
+    monthLabel.innerHTML=(firstDateObjectOfTheMonth(viewedMonth,viewedYear).toLocaleDateString('en-GB',{month:"long",year:"2-digit"}));
 
-    for (var i = 0; i < 7; i++) { //increase size of calander to allow second month
+ // Clear the calendar
+ calendarBody.innerHTML = ""
+
+    const firstSundayDateObject=new Date(firstDateObjectOfTheMonth(viewedMonth,viewedYear)-(firstDateObjectOfTheMonth(viewedMonth,viewedYear).getDay())*dayInMS);
+    console.log(firstSundayDateObject);
+    for (var i = 0; i < 6; i++) { //increase size of calander to allow second month
         var row = document.createElement("tr");
-        for (var j = 0; j < 7; j++) {
+        for (var weekday = 0; weekday < 7; weekday++) {
           var cell = document.createElement("td");
 
             cell.appendChild(document.createTextNode(""));         
@@ -110,6 +125,10 @@
     }
    
 
+    function firstDateObjectOfTheMonth(month,year){
+        return new Date(month+1+'/1/'+year);
+    }
+
     function selectDay(){
 
     }
@@ -120,6 +139,22 @@
         dateObject=new Date(usDateString);
         return dateObject;
     }
+
+    function nextMonth() {
+        viewedMonth++;
+        if(viewedMonth>11){viewedYear++;viewedMonth=0;}
+        renderCalendar();
+    }
+
+    function previousMonth() {
+        if(viewedMonth>today.getMonth()||viewedYear>today.getFullYear())
+        {
+            viewedMonth--;
+            if(viewedMonth<0){viewedYear--;viewedMonth=11;}
+            renderCalendar();
+        }
+    }
+
 
     renderCalendar();
 
