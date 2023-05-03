@@ -1,0 +1,144 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+
+
+
+    <title>CalendarTest2</title>
+    <style>
+        .calendar {
+            max-width: 400px;
+        }
+
+        .btn {
+            width: 100px;
+        }
+
+        th {
+            border: solid black 2px;
+            text-align: center;
+            width:50px;
+        }
+        td{
+            border: solid black 1px;
+            height:25px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="calendar container">
+        <div class="d-flex flex-column justify-content-center">
+            <h2 class="text-center">Calendar</h2>
+            <div class="text-center">
+                <button class="btn btn-secondary" onclick="previousMonth()">Previous</button>
+                <span id="currentMonth">January</span>
+                <button class="btn btn-secondary" onclick="nextMonth()">Next</button>
+            </div>
+            <br>
+            <table id="calendar">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <br>
+            <div>
+                <label>Selected Day: </label>
+                <span id="selectedDay"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    //Create the calander detail.
+
+     //SET UP WEEKLY DETAILS
+    const regularClosedDays = [6,0];//Set days closed where 0-6 is Monday - Saturday.
+    const specialClosedDays = ['8/05/23','22/05/23']; //Set special holidays that are comming up.
+
+    const dayInMS = 24*60*60*1000; //1 day in ms
+    const today = new Date(); //current date
+
+    var selectedDate = null;
+    var readyDate=null;
+
+    const mydate = dateObjectFromUKDate('23/01/23');
+    
+    
+    //DATE CONVERSIONS
+    console.log("test:"+mydate.toDateString());
+    console.log("test:"+mydate.toLocaleDateString('en-GB',{weekday:"long"}));
+    console.log("test:"+mydate.toLocaleDateString('en-GB',{month:"long"}));
+
+    function renderCalendar(){
+    var calendarBody = document.getElementById("calendar").getElementsByTagName("tbody")[0];
+
+    for (var i = 0; i < 7; i++) { //increase size of calander to allow second month
+        var row = document.createElement("tr");
+        for (var j = 0; j < 7; j++) {
+          var cell = document.createElement("td");
+
+            cell.appendChild(document.createTextNode(""));         
+            cell.addEventListener("click", selectDay);                 
+            //cell.id=   
+          row.appendChild(cell);
+        }
+        calendarBody.appendChild(row);
+      }
+    }
+   
+
+    function selectDay(){
+
+    }
+
+    function dateObjectFromUKDate(ukDateString){  
+        parts=ukDateString.split('/');
+        usDateString = parts[1]+"/"+parts[0]+"/"+parts[2];
+        dateObject=new Date(usDateString);
+        return dateObject;
+    }
+
+    renderCalendar();
+
+    </script>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+</body>
+
+</html>
