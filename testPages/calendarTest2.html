@@ -24,6 +24,9 @@
             width: 100px;
            
         }
+        .closed{
+            background: red;
+        }
 
         .btn {
         
@@ -82,8 +85,8 @@
 
      //SET UP WEEKLY DETAILS
     const regularClosedDays = [6,0];//Set days closed where 0-6 is Monday - Saturday.
-    const specialClosedDays = ['8/05/23','22/05/23']; //Set special holidays that are comming up.
-
+    const specialClosedDays = ['8/5/2023','22/5/2023']; //Set special holidays that are comming up.
+    
     const dayInMS = 24*60*60*1000; //1 day in ms
     const today = new Date(); //current date
     var viewedMonth=today.getMonth();
@@ -92,13 +95,14 @@
     var selectedDate = null;
     var readyDate=null;
 
-    const mydate = dateObjectFromUKDate('23/01/23');
-    
+    const mydate = dateObjectFromUKDate('23/1/23');
+        console.log(returnDateNumber(mydate));
     
     //DATE CONVERSIONS
     console.log("test:"+mydate.toDateString());
     console.log("test:"+mydate.toLocaleDateString('en-GB',{weekday:"long"}));
     console.log("test:"+mydate.toLocaleDateString('en-GB',{month:"long"}));
+    console.log("test:"+mydate.getDate());//date in month ie 23
 
     function renderCalendar(){
     var calendarBody = document.getElementById("calendar").getElementsByTagName("tbody")[0];
@@ -107,17 +111,32 @@
 
  // Clear the calendar
  calendarBody.innerHTML = ""
-
+        //get the date object for the first day showing on that month's calendar which would be a sunday.
     const firstSundayDateObject=new Date(firstDateObjectOfTheMonth(viewedMonth,viewedYear)-(firstDateObjectOfTheMonth(viewedMonth,viewedYear).getDay())*dayInMS);
     console.log(firstSundayDateObject);
+    var calanderDate=new Date(firstSundayDateObject);
     for (var i = 0; i < 6; i++) { //increase size of calander to allow second month
         var row = document.createElement("tr");
         for (var weekday = 0; weekday < 7; weekday++) {
           var cell = document.createElement("td");
+            cell.appendChild(document.createTextNode(calanderDate.getDate()));         
+            cell.addEventListener("click", selectDay);  
+        
+            //red for special closed days
+            if(specialClosedDays.includes(ukDateFromDateObject(calanderDate))){
+                cell.classList.add('closed');
+            }
 
-            cell.appendChild(document.createTextNode(""));         
-            cell.addEventListener("click", selectDay);                 
-            //cell.id=   
+            if(regularClosedDays.includes(calanderDate.getDay())){
+                cell.classList.add('closed');
+            }
+            
+
+            //cell.id= 
+            //Other opeations on cell
+            
+            calanderDate=new Date(((calanderDate.getTime())+dayInMS));            
+              
           row.appendChild(cell);
         }
         calendarBody.appendChild(row);
@@ -140,6 +159,12 @@
         return dateObject;
     }
 
+    function ukDateFromDateObject(dateObject){
+        ukDateString = dateObject.getDate()+"/"+(dateObject.getMonth()+1)+"/"+dateObject.getFullYear();
+        return ukDateString;
+    }
+
+
     function nextMonth() {
         viewedMonth++;
         if(viewedMonth>11){viewedYear++;viewedMonth=0;}
@@ -153,6 +178,10 @@
             if(viewedMonth<0){viewedYear--;viewedMonth=11;}
             renderCalendar();
         }
+    }
+
+    function returnDateNumber(dateObject){
+        return dateObject.toLocaleDateString('en-GB',{month:"long",year:"2-digit"});
     }
 
 
