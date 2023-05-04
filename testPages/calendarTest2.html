@@ -42,6 +42,12 @@
             border: solid black 1px;
             height:25px;
         }
+        .other_month{
+            background: grey;
+        }
+        td.selected {
+        background-color: #ffcc66!important;
+      }
     </style>
 
 
@@ -112,7 +118,8 @@
  // Clear the calendar
  calendarBody.innerHTML = ""
         //get the date object for the first day showing on that month's calendar which would be a sunday.
-    const firstSundayDateObject=new Date(firstDateObjectOfTheMonth(viewedMonth,viewedYear)-(firstDateObjectOfTheMonth(viewedMonth,viewedYear).getDay())*dayInMS);
+    const firstSundayDateObject=new Date(firstDateObjectOfTheMonth(viewedMonth,viewedYear).getTime()-((firstDateObjectOfTheMonth(viewedMonth,viewedYear).getDay()-0.5)*(dayInMS)));
+    console.log(firstDateObjectOfTheMonth(viewedMonth,viewedYear));
     console.log(firstSundayDateObject);
     var calanderDate=new Date(firstSundayDateObject);
     for (var i = 0; i < 6; i++) { //increase size of calander to allow second month
@@ -120,37 +127,67 @@
         for (var weekday = 0; weekday < 7; weekday++) {
           var cell = document.createElement("td");
             cell.appendChild(document.createTextNode(calanderDate.getDate()));         
-            cell.addEventListener("click", selectDay);  
-        
-            //red for special closed days
-            if(specialClosedDays.includes(ukDateFromDateObject(calanderDate))){
+           
+
+            //grey for other month days
+            if(viewedMonth!=calanderDate.getMonth()){
+                cell.classList.add('other_month');
+            }else if(specialClosedDays.includes(ukDateFromDateObject(calanderDate)))   
+            {
+                //red for special closed days
                 cell.classList.add('closed');
+            }else if (regularClosedDays.includes(calanderDate.getDay())){
+
+             //red for weekly closed days
+          
+                cell.classList.add('closed');
+            }else{            
+            //make the cell selectable
+            cell.classList.add('selectable');
+                cell.addEventListener("click", selectDay);  
             }
 
-            if(regularClosedDays.includes(calanderDate.getDay())){
-                cell.classList.add('closed');
-            }
-            
 
-            //cell.id= 
+          
+           
+            //cellid=
             //Other opeations on cell
-            
-            calanderDate=new Date(((calanderDate.getTime())+dayInMS));            
-              
+          
+            calanderDate.setDate(calanderDate.getDate() + 1);    
+
           row.appendChild(cell);
         }
         calendarBody.appendChild(row);
       }
     }
    
+    function selectDay() {
+        
+      if (selectedDate != null) {
+        selectedDate.classList.remove("selected");
+        console.log("oo");
+        //document.getElementById(readyDate).classList.remove("ready");
+      }  
+      selectedDate = this;
+      selectedDate.classList.add("selected");
+      console.log("select");
+      //document.getElementById("selectedDay").innerHTML = currentDate.toLocaleDateString("en-US", {weekday: "long", month: "long", day: "numeric"}) + ": " + selectedDate.innerHTML;
+
+      //set ready date
+     // readyDate=Number(selectedDate.id)+(dayInMS*4);
+      //console.log(selectedDate.id+" , "+readyDate);
+
+      //document.getElementById(readyDate).classList.add("ready");
+
+    }   
+
+
 
     function firstDateObjectOfTheMonth(month,year){
         return new Date(month+1+'/1/'+year);
     }
 
-    function selectDay(){
 
-    }
 
     function dateObjectFromUKDate(ukDateString){  
         parts=ukDateString.split('/');
@@ -192,7 +229,7 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
