@@ -23,13 +23,13 @@ class Header extends HTMLElement {
               <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="services.html">Main Services</a>
+              <a class="nav-link" href="services.html">Services</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="locations.html">Location</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="other_services.html">Other Services</a>
+              <a class="nav-link" href="service_time.html">Service Time</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="contact.html">Contact Us</a>

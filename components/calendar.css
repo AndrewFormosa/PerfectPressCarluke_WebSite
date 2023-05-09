@@ -1,0 +1,40 @@
+.calendar {
+    max-width: 400px;
+}
+#currentMonth{
+   display: inline-block;
+    width: 100px;
+   
+}
+.closed{
+    background: red;
+}
+
+.btn {
+
+    width: 80px;
+    font-size: 0.8rem;
+}
+.today{
+    font-weight: bold;
+    border:solid blue 3px;
+}
+th {
+    border: solid black 2px;
+    text-align: center;
+    width:50px;
+}
+td{
+    border: solid black 1px;
+    height:25px;
+    text-align: center;
+}
+.other_month{
+    background: grey;
+}
+td.selected {
+background-color: #ffcc66!important;
+}
+td.ready{
+background: green;
+}
