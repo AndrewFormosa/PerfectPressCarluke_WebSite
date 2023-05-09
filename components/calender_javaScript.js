@@ -2,7 +2,7 @@
     //all dates must be in DD/MM/YYYY format.
      //SET UP WEEKLY DETAILS
      const regularClosedDays = [0];//Set days closed where 0-6 is Monday - Saturday.
-     const specialClosedDays = ['8/5/2023','22/5/2023']; //Set special P/P holidays that are comming up.
+     const specialClosedDays = ['8/5/2023']; //Set special P/P holidays that are comming up.
  
      
      //use Lead timmes and Holiday details
