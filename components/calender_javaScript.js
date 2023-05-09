@@ -76,7 +76,7 @@
               //red for weekly closed days
            
                  cell.classList.add('closed');
-             }else if(calanderDate>today){            
+             }else if(calanderDate.getMonth()!=today.getMonth()||calanderDate.getFullYear()>today.getFullYear() || (calanderDate.getMonth()==today.getMonth()&&calanderDate.getDate()>=today.getDate())){            
              //make the cell selectable
              cell.classList.add('selectable');
                  cell.addEventListener("click", selectDay);  
