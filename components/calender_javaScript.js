@@ -6,12 +6,12 @@
  
      
      //use Lead timmes and Holiday details
-     const ironLeadTimes=[0,3,3,3,4,5,5];//must be 7 long
+     const ironLeadTimes=[0,4,4,5,5,5,5];//must be 7 long
      const dcLeadTimes=[0,4,3,7,6,5,4];//must be 7 long
      const altLeadTimes=[0,7,7,7,7,7,7];//must be 7 long
-     const ironHolidays=[['8/5/2023','9/5/2023','9/5/2023'],['22/5/2023','23/5/23','23/5/2023']];
-     const dcHolidays=[['8/5/2023','9/5/2023','9/5/2023'],['22/5/2023','23/5/23','23/5/2023']];
-     const altHolidays=[['8/5/2023','9/5/2023','9/5/2023'],['22/5/2023','23/5/23','23/5/2023']];
+     const ironHolidays=[['8/5/2023','9/5/2023','9/5/2023']];
+     const dcHolidays=[['8/5/2023','9/5/2023','9/5/2023']];
+     const altHolidays=[['8/5/2023','9/5/2023','9/5/2023']];
      //stating next long holiday
      //2d array - array of holiday exeptions. is exepction has three dates init. 
      //if the return date is between the first two dates then make return date last one.
